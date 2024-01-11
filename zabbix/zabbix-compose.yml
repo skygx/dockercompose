@@ -1,0 +1,76 @@
+version: '3'
+services:
+  zabbix-server:
+    image: zabbix/zabbix-server-mysql:5.0-centos-latest
+    restart: always
+    ports:
+      - 10051:10051
+    environment:
+      - DB_SERVER_HOST=db
+      - MYSQL_DATABASE=zabbix
+      - MYSQL_USER=zabbix
+      - MYSQL_PASSWORD=zabbix
+      - MYSQL_ROOT_PASSWORD=root
+      - ZBX_JAVAGATEWAY=zabbix-java-gateway
+      - ZBX_JAVAGATEWAY_ENABLE=true
+      - ZBX_JAVAGATEWAYPORT=10052
+    volumes:
+      - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime
+    privileged: true
+    depends_on:
+      - db
+  
+  zabbix-web:
+    image: zabbix/zabbix-web-nginx-mysql:5.0-centos-latest
+    restart: always
+    ports:
+      - 8091:8080
+    environment:
+      - DB_SERVER_HOST=db
+      - MYSQL_DATABASE=zabbix
+      - MYSQL_USER=zabbix
+      - MYSQL_PASSWORD=zabbix
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime
+      - ./simple.ttf:/usr/share/zabbix/assets/fonts/DejaVuSans.ttf
+      - ./php.ini:/etc/php.ini
+      - ./zabbix.conf:/etc/php-fpm.d/zabbix.conf
+    privileged: true
+    depends_on:
+      - db
+  
+  db:
+    image: mysql:5.7
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_DATABASE=zabbix
+      - MYSQL_USER=zabbix
+      - MYSQL_PASSWORD=zabbix
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - ./mysql:/var/lib/mysql
+      - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime
+
+  zabbix-agent:
+    image: zabbix/zabbix-agent:5.0-centos-latest
+    environment:
+      ZBX_SERVER_HOST: zabbix-server
+      ZBX_HOSTNAME: 192.168.226.20
+      ZBX_LISTENPORT: 10055
+    ports:
+      - "10055:10050"
+    privileged: true
+    volumes:
+      - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime
+    depends_on:
+       - "zabbix-server"
+
+  zabbix-java-gateway:
+    image: zabbix/zabbix-java-gateway:5.0-centos-latest
+    restart: always
+    privileged: true
+    volumes:
+      - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime

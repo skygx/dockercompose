@@ -1,0 +1,112 @@
+version: '3.4'
+services:
+  node1:
+    image: 192.168.136.143:5000/redis:5.0.7
+    container_name: redis-node1
+    restart: always
+    environment:
+      ID: 1
+      PORT: 6061
+    ports:
+      - 6061:6061
+      - 16061:16061
+    volumes:
+      - /home/linux/docker-compose/redis-cluster/data/node1:/data
+      - /home/linux/docker-compose/redis-cluster/conf/node1:/usr/local/etc/redis
+    command:
+      redis-server /usr/local/etc/redis/redis.conf
+    networks:
+    - redis-cluster
+       
+  node2:
+    image: 192.168.136.143:5000/redis:5.0.7
+    container_name: redis-node2
+    restart: always
+    environment:
+      ID: 2
+      PORT: 6062
+    ports:
+      - 6062:6062
+      - 16062:16062
+    volumes:
+      - /home/linux/docker-compose/redis-cluster/data/node2:/data
+      - /home/linux/docker-compose/redis-cluster/conf/node2:/usr/local/etc/redis
+    command:
+      redis-server /usr/local/etc/redis/redis.conf
+    networks:
+    - redis-cluster
+       
+       
+  node3:
+    image: 192.168.136.143:5000/redis:5.0.7
+    container_name: redis-node3
+    restart: always
+    environment:
+      ID: 3
+      PORT: 6063
+    ports:
+      - 6063:6063
+      - 16063:16063
+    volumes:
+      - /home/linux/docker-compose/redis-cluster/data/node3:/data
+      - /home/linux/docker-compose/redis-cluster/conf/node3:/usr/local/etc/redis
+    command:
+      redis-server /usr/local/etc/redis/redis.conf
+    networks:
+    - redis-cluster
+       
+  node4:
+    image: 192.168.136.143:5000/redis:5.0.7
+    container_name: redis-node4
+    restart: always
+    environment:
+      ID: 4
+      PORT: 6064
+    ports:
+      - 6064:6064
+      - 16064:16064
+    volumes:
+      - /home/linux/docker-compose/redis-cluster/data/node4:/data
+      - /home/linux/docker-compose/redis-cluster/conf/node4:/usr/local/etc/redis
+    command:
+      redis-server /usr/local/etc/redis/redis.conf
+    networks:
+    - redis-cluster
+       
+  node5:
+    image: 192.168.136.143:5000/redis:5.0.7
+    container_name: redis-node5
+    restart: always
+    environment:
+      ID: 5
+      PORT: 6065
+    ports:
+      - 6065:6065
+      - 16065:16065
+    volumes:
+      - /home/linux/docker-compose/redis-cluster/data/node5:/data
+      - /home/linux/docker-compose/redis-cluster/conf/node5:/usr/local/etc/redis
+    command:
+      redis-server /usr/local/etc/redis/redis.conf
+    networks:
+    - redis-cluster
+       
+  node6:
+    image: 192.168.136.143:5000/redis:5.0.7
+    container_name: redis-node6
+    restart: always
+    environment:
+      ID: 6
+      PORT: 6066
+    ports:
+      - 6066:6066
+      - 16066:16066
+    volumes:
+      - /home/linux/docker-compose/redis-cluster/data/node6:/data
+      - /home/linux/docker-compose/redis-cluster/conf/node6:/usr/local/etc/redis
+    command:
+      redis-server /usr/local/etc/redis/redis.conf
+    networks:
+    - redis-cluster
+networks:
+  redis-cluster:

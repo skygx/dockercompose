@@ -1,0 +1,47 @@
+version: "3.9"
+services:
+  mongo:
+    image: mongo
+    container_name: "mongo"
+    user: root
+    ports:
+      - "27017:27017"
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /opt/mongo/data:/data/db
+    restart: on-failure
+    networks:
+      - prometheus_dev
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 128M
+        reservations:
+          memory: 64M
+
+  mongo-exporter:
+    image: bitnami/mongodb-exporter
+    container_name: "mongo-exporter"
+    user: root
+    ports:
+      - "9216:9216"
+    volumes:
+      - /etc/localtime:/etc/localtime
+    restart: on-failure
+    depends_on:
+      - mongo
+    command: "--mongodb.uri=mongodb://mongo:27017 --discovering-mode --compatible-mode"
+    networks:
+      - prometheus_dev
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 128M
+        reservations:
+          memory: 64M    
+
+networks:
+  prometheus_dev:
+    external: true

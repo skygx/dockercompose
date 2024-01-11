@@ -1,0 +1,1 @@
+redis-server --slaveof 192.168.226.20 16380 --port 16382 --requirepass 123456 --masterauth 123456 --protected-mode no --daemonize no

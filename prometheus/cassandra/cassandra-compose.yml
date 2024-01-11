@@ -1,0 +1,55 @@
+version: "3.9"
+services:
+  cassandra:
+    image: cassandra
+    container_name: cassandra
+    user: root
+    restart: on-failure
+    hostname: cassandra
+    #ports:
+    #  - 7000:7000
+    #  - 9042:9042
+    #  - 7199:7199
+    #networks:
+    #  - prometheus_dev
+    network_mode: "host"
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /opt/cassandra/data:/var/lib/cassandra
+      - ./cassandra-env.sh:/etc/cassandra/cassandra-env.sh
+      - ./jmxremote.password:/etc/cassandra/jmxremote.password
+      - ./jmxremote.access:/etc/cassandra/jmxremote.access
+#    deploy:
+#      resources:
+#        limits:
+#          cpus: "0.25"
+#          memory: 128M
+#        reservations:
+#          memory: 64M
+
+  cassandra-exporter:
+    image: bitnami/cassandra-exporter
+    container_name: cassandra-exporter
+    user: root
+    restart: on-failure
+    hostname: cassandra-exporter
+    #ports:
+    #  - 8083:8080
+    #networks:
+    #  - prometheus_dev
+    network_mode: "host"
+    pid: "host"
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - ./config.yml:/opt/bitnami/cassandra-exporter/config.yml
+    #deploy:
+    #  resources:
+    #    limits:
+    #      cpus: "0.25"
+    #      memory: 64M
+    #    reservations:
+    #      memory: 32M
+
+networks:
+  prometheus_dev:
+    external: true

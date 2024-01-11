@@ -1,0 +1,46 @@
+version: "3.9"
+services:
+  consul:
+    image: consul
+    container_name: "consul"
+    user: root
+    ports:
+      - "8500:8500"
+    networks:
+      - prometheus_dev
+    volumes:
+      - /etc/localtime:/etc/localtime
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 128M
+        reservations:
+          memory: 64M
+
+  consul-exporter:
+    image: prom/consul-exporter
+    container_name: "consul-exporter"
+    user: root
+    ports:
+      - "9107:9107"
+    networks:
+      - prometheus_dev
+    volumes:
+      - /etc/localtime:/etc/localtime
+    command: "--consul.server=consul:8500"
+    restart: always
+    depends_on:
+      - consul
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 128M
+        reservations:
+          memory: 64M
+
+networks:
+  prometheus_dev:
+    external: true

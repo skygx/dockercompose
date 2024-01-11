@@ -1,0 +1,11 @@
+# bind 127.0.0.1 //加上注释#
+protected-mode no //关闭保护模式
+port ${PORT}  //绑定自定义端口
+# daemonize yes //禁止redis后台运行
+pidfile /var/run/redis_${PORT}.pid
+cluster-enabled yes //开启集群 把注释#去掉
+cluster-config-file nodes_${PORT}.conf //集群的配置 配置文件首次启动自动生成
+appendonly yes //开启aof
+cluster-announce-ip redis-node${ID}   //要宣布的IP地址。nat模式要指定宿主机IP
+cluster-announce-port ${PORT}  //要宣布的数据端口。
+cluster-announce-bus-port 1${PORT}  //要宣布的集群总线端口

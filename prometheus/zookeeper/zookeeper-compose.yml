@@ -1,0 +1,53 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  zookeeper:
+    image: bitnami/zookeeper
+    container_name: "zookeeper"
+    user: root
+    ports:
+      - "2181:2181"
+    networks:
+      - prometheus_dev
+    volumes:
+      - /etc/localtime:/etc/localtime
+    environment:
+      - ZOO_ENABLE_AUTH=no
+      - ALLOW_ANONYMOUS_LOGIN=yes
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 256M
+        reservations:
+          memory: 64M
+
+
+  zookeeper-exporter:
+    image: bitnami/zookeeper-exporter
+    container_name: "zookeeper-exporter"
+    user: root
+    ports:
+      - "9141:9141"
+      - "8081:8080"
+    networks:
+      - prometheus_dev
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /opt/zookeeper/data:/data
+    restart: always
+    command: "-zk-list zookeeper:2181"
+    depends_on:
+    #  - prometheus
+      - zookeeper
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 128M
+        reservations:
+          memory: 64M
+
+networks:
+  prometheus_dev:
+    external: true

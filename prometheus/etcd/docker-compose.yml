@@ -1,0 +1,21 @@
+version: '3.9'
+networks:
+  prometheus_dev:
+    external: true
+
+services:
+  etcd:
+    image: bitnami/etcd
+    container_name: etcd
+    #command: etcd -name etcd1 -advertise-client-urls http://192.168.226.20:32775 -listen-client-urls http://0.0.0.0:2379 -listen-peer-urls http://0.0.0.0:32774 -initial-cluster-token etcd-cluster -initial-cluster "etcd1=http://etcd1:32774,etcd2=http://etcd2:32776,etcd3=http://etcd3:32778" -initial-cluster-state new
+    ports:
+      - "2379:2379"
+      - "2380:2380"
+    environment:
+      - ALLOW_NONE_AUTHENTICATION=yes
+      - ETCD_ADVERTISE_CLIENT_URLS=http://etcd:2379
+    networks:
+      - prometheus_dev
+    volumes:
+      - /etc/localtime:/etc/localtime
+

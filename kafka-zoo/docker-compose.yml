@@ -1,0 +1,17 @@
+version: '2'
+services:
+  zookeeper:
+    image: 192.168.136.143:5000/zookeeper:3.5.6
+    ports:
+      - "2181:2181"
+
+  kafka:
+    image: 192.168.136.143:5000/kafka
+    ports:
+      - "9092"             # kafka 把9092端口随机映射到主机的端口
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: 192.168.136.143         #本机ip
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181/kafka
+      KAFKA_CREATE_TOPICS: test1:2:3
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock

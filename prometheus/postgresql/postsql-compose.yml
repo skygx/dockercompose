@@ -1,0 +1,51 @@
+version: "3.9"
+services:
+  postgres:
+    image: bitnami/postgresql
+    container_name: "postgresql"
+    user: root
+    ports:
+      - "5432:5432"
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /opt/postgresql/data:/var/lib/postgresql
+    restart: on-failure
+    networks:
+      - prometheus_dev
+    environment:
+      - POSTGRES_PASSWORD=root
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 128M
+        reservations:
+          memory: 64M
+
+  postgres-exporter:
+    image: bitnami/postgres-exporter
+    container_name: "postgres-exporter"
+    user: root
+    #ports:
+    #  - "9187:9187"
+    #networks:
+    #  - prometheus_dev
+    network_mode: "host"
+    volumes:
+      - /etc/localtime:/etc/localtime
+    restart: on-failure
+    depends_on:
+      - postgres
+    environment:
+      - DATA_SOURCE_NAME=postgresql://postgres:root@192.168.226.20:5432/postgres?sslmode=disable
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 128M
+        reservations:
+          memory: 64M    
+
+networks:
+  prometheus_dev:
+    external: true

@@ -1,0 +1,44 @@
+version: "3.9"
+x-logging:
+  &loki-logging
+  driver: loki
+  options:
+    loki-url: "http://192.168.226.20:3100/loki/api/v1/push"
+    max-size: "50m"
+    max-file: "10"
+    loki-pipeline-stages: |
+      - multiline:
+          firstline: '^{"log":.*}'
+services:
+  tomcat:
+    image: tomcat:9.0-alpine
+    container_name: "tomcat"
+    user: root
+    ports:
+      - "8084:8080"
+      - "6060:6060"
+      - "9008:9008"
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /opt/tomcat:/jmx-exporter
+      - /opt/tomcat/conf:/usr/local/tomcat/conf
+      - /opt/tomcat/context.xml:/usr/local/tomcat/webapps/manager/META-INF/context.xml
+      #- ./catalina.sh:/usr/local/tomcat/bin/catalina.sh
+    networks:
+      - prometheus_dev
+    logging: *loki-logging
+    restart: "on-failure"
+    environment: 
+      - CATALINA_OPTS="-javaagent:/jmx-exporter/jmx_prometheus_javaagent-0.16.1.jar=6060:/jmx-exporter/config.yml"
+      - JAVA_OPTS=-Dcom.sun.management.jmxremote.rmi.port=9008 -Dcom.sun.management.jmxremote.port=9008 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=192.168.226.20
+#    deploy:
+#      resources:
+#        limits:
+#          cpus: "0.25"
+#          memory: 128M
+#        reservations:
+#          memory: 64M
+
+networks:
+  prometheus_dev:
+    external: true

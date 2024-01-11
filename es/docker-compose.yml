@@ -1,0 +1,32 @@
+version: '3.3'
+services:
+  elasticsearch:
+    image: 192.168.136.143:5000/elasticsearch:7.5.0
+    container_name: 'es75'
+    environment:
+      - cluster.name=elk
+      - node.name="es1"
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - cluster.initial_master_nodes="es1"
+#      - discovery.seed_hosts=["127.0.0.1","[::1]"]
+#      - discovery.type="single-node"
+#    restart: always
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - es7data1:/usr/share/elasticsearch/data
+      - /etc/localtime:/etc/localtime
+    ports:
+      - 9200:9200
+    networks:
+      - es7net
+
+volumes:
+  es7data1:
+    driver: local
+networks:
+  es7net:
+    driver: bridge

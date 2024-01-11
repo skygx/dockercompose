@@ -1,0 +1,39 @@
+version: "3.9"
+x-logging:
+  &norm-logging
+  driver: loki
+  options:
+    loki-url: "http://192.168.226.20:3100/loki/api/v1/push"
+    max-size: "50m"
+    max-file: "10"
+    loki-pipeline-stages: |
+      - multiline:
+          firstline: '^level.*'
+
+services:
+  hbase:
+    image: harisekhon/hbase
+    container_name: hbase
+    hostname: hbase
+    expose:
+      - "9090"
+      - "8080"
+    ports:
+      - "8103:16010"
+      - "8104:16030"
+    environment:
+      - TZ=Asia/Shanghai
+      - LANG=zh_CN.UTF-8
+    logging: *norm-logging
+    networks:
+      - prometheus_dev
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+        reservations:
+          memory: 512M 
+
+networks:
+  prometheus_dev:
+    external: true

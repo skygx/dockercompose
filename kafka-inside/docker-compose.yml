@@ -1,0 +1,27 @@
+version: '3'
+services:
+  zookeeper:
+      container_name: zookeeper
+      image: 192.168.136.143:5000/zookeeper:3.5.6
+      ports:
+        - "2181:2181"
+      volumes:
+        - "/etc/localtime:/etc/localtime" 
+  kafka:
+      container_name: kafka
+      image: 192.168.136.143:5000/kafka
+      depends_on:
+        - zookeeper
+      ports:
+        - "9092:9092"
+      environment:
+        - TZ=CST-8
+        - KAFKA_BROKER_ID=2
+        - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+        - KAFKA_LOG_DIRS=/kafka/logs
+        - KAFKA_LISTENERS=PLAINTEXT://:9092
+        - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://192.168.136.143:9092
+      volumes:
+        - "/data/kafka:/kafka/logs"
+      links:
+        - zookeeper

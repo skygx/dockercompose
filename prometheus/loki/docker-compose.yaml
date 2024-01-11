@@ -1,0 +1,63 @@
+version: "3"
+x-logging:
+  &loki-logging
+  driver: loki
+  options:
+    loki-url: "http://192.168.226.20:3100/loki/api/v1/push"
+    max-size: "50m"
+    max-file: "10"
+    loki-pipeline-stages: |
+      - multiline:
+          firstline: '^{"log":.*}'
+
+networks:
+  prometheus_dev:
+    external: true
+
+services:
+  loki:
+    image: grafana/loki
+    container_name: loki
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    environment:
+    - TZ=Asia/Shanghai
+    - LANG=zh_CN.UTF-8
+    logging: *loki-logging
+    networks:
+      - prometheus_dev
+    volumes:
+      - /etc/localtime:/etc/localtime
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 128M
+        reservations:
+          memory: 64M
+
+  promtail:
+    image: grafana/promtail
+    container_name: promtail
+    command: -config.file=/etc/promtail/config.yml
+    networks:
+      - prometheus_dev
+    logging: *loki-logging
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - ./config.yml:/etc/promtail/config.yml
+      - /var/log:/var/log
+      - /var/lib/docker/containers:/var/docker
+    environment:
+    - TZ=Asia/Shanghai
+    - LANG=zh_CN.UTF-8
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 128M
+        reservations:
+          memory: 64M

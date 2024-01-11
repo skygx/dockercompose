@@ -1,0 +1,302 @@
+Starting kibana73 ... 
+Starting es73     ... 
+[2A[2KStarting kibana73 ... [32mdone[0m[2B[1A[2KStarting es73     ... [32mdone[0m[1BAttaching to kibana73, es73
+[36mes73             |[0m OpenJDK 64-Bit Server VM warning: Option UseConcMarkSweepGC was deprecated in version 9.0 and will likely be removed in a future release.
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:47,853Z", "level": "INFO", "component": "o.e.e.NodeEnvironment", "cluster.name": "my-elastic", "node.name": "es73", "message": "using [1] data paths, mounts [[/usr/share/elasticsearch/data (/dev/sdb1)]], net usable_space [5.5gb], net total_space [9.9gb], types [xfs]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:47,863Z", "level": "INFO", "component": "o.e.e.NodeEnvironment", "cluster.name": "my-elastic", "node.name": "es73", "message": "heap size [495.3mb], compressed ordinary object pointers [true]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:47,895Z", "level": "INFO", "component": "o.e.n.Node", "cluster.name": "my-elastic", "node.name": "es73", "message": "node name [es73], node ID [f0qWt1sjQJu9VFOD-DKXpw], cluster name [my-elastic]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:47,896Z", "level": "INFO", "component": "o.e.n.Node", "cluster.name": "my-elastic", "node.name": "es73", "message": "version[7.5.0], pid[1], build[default/docker/e9ccaed468e2fac2275a3761849cbee64b39519f/2019-11-26T01:06:52.518245Z], OS[Linux/3.10.0-957.el7.x86_64/amd64], JVM[AdoptOpenJDK/OpenJDK 64-Bit Server VM/13.0.1/13.0.1+9]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:47,897Z", "level": "INFO", "component": "o.e.n.Node", "cluster.name": "my-elastic", "node.name": "es73", "message": "JVM home [/usr/share/elasticsearch/jdk]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:47,897Z", "level": "INFO", "component": "o.e.n.Node", "cluster.name": "my-elastic", "node.name": "es73", "message": "JVM arguments [-Des.networkaddress.cache.ttl=60, -Des.networkaddress.cache.negative.ttl=10, -XX:+AlwaysPreTouch, -Xss1m, -Djava.awt.headless=true, -Dfile.encoding=UTF-8, -Djna.nosys=true, -XX:-OmitStackTraceInFastThrow, -Dio.netty.noUnsafe=true, -Dio.netty.noKeySetOptimization=true, -Dio.netty.recycler.maxCapacityPerThread=0, -Dio.netty.allocator.numDirectArenas=0, -Dlog4j.shutdownHookEnabled=false, -Dlog4j2.disable.jmx=true, -Djava.locale.providers=COMPAT, -Xms1g, -Xmx1g, -XX:+UseConcMarkSweepGC, -XX:CMSInitiatingOccupancyFraction=75, -XX:+UseCMSInitiatingOccupancyOnly, -Djava.io.tmpdir=/tmp/elasticsearch-16170488704030252856, -XX:+HeapDumpOnOutOfMemoryError, -XX:HeapDumpPath=data, -XX:ErrorFile=logs/hs_err_pid%p.log, -Xlog:gc*,gc+age=trace,safepoint:file=logs/gc.log:utctime,pid,tags:filecount=32,filesize=64m, -Des.cgroups.hierarchy.override=/, -Xms512m, -Xmx512m, -XX:MaxDirectMemorySize=268435456, -Des.path.home=/usr/share/elasticsearch, -Des.path.conf=/usr/share/elasticsearch/config, -Des.distribution.flavor=default, -Des.distribution.type=docker, -Des.bundled_jdk=true]" }
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:01:53Z","tags":["info","plugins-system"],"pid":6,"message":"Setting up [15] plugins: [code,licensing,security,timelion,features,spaces,expressions,translations,eui_utils,uiActions,newsfeed,inspector,embeddable,advancedUiActions,data]"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:01:53Z","tags":["info","plugins","code"],"pid":6,"message":"Setting up plugin"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:01:53Z","tags":["info","plugins","licensing"],"pid":6,"message":"Setting up plugin"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:01:53Z","tags":["info","plugins","security"],"pid":6,"message":"Setting up plugin"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:01:53Z","tags":["warning","plugins","security","config"],"pid":6,"message":"Generating a random key for xpack.security.encryptionKey. To prevent sessions from being invalidated on restart, please set xpack.security.encryptionKey in kibana.yml"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:01:53Z","tags":["warning","plugins","security","config"],"pid":6,"message":"Session cookies will be transmitted over insecure connections. This is not recommended."}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:01:53Z","tags":["info","plugins","timelion"],"pid":6,"message":"Setting up plugin"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:01:53Z","tags":["info","plugins","features"],"pid":6,"message":"Setting up plugin"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:01:53Z","tags":["info","plugins","spaces"],"pid":6,"message":"Setting up plugin"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:01:53Z","tags":["info","plugins","translations"],"pid":6,"message":"Setting up plugin"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:01:53Z","tags":["info","plugins","data"],"pid":6,"message":"Setting up plugin"}
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:55,148Z", "level": "INFO", "component": "o.e.p.PluginsService", "cluster.name": "my-elastic", "node.name": "es73", "message": "loaded module [aggs-matrix-stats]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:55,149Z", "level": "INFO", "component": "o.e.p.PluginsService", "cluster.name": "my-elastic", "node.name": "es73", "message": "loaded module [analysis-common]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:55,149Z", "level": "INFO", "component": "o.e.p.PluginsService", "cluster.name": "my-elastic", "node.name": "es73", "message": "loaded module [flattened]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:55,152Z", "level": "INFO", "component": "o.e.p.PluginsService", "cluster.name": "my-elastic", "node.name": "es73", "message": "loaded module [frozen-indices]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:55,152Z", "level": "INFO", "component": "o.e.p.PluginsService", "cluster.name": "my-elastic", "node.name": "es73", "message": "loaded module [ingest-common]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:55,157Z", "level": "INFO", "component": "o.e.p.PluginsService", "cluster.name": "my-elastic", "node.name": "es73", "message": "loaded module [ingest-geoip]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:55,157Z", "level": "INFO", "component": "o.e.p.PluginsService", "cluster.name": "my-elastic", "node.name": "es73", "message": "loaded module [ingest-user-agent]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:55,158Z", "level": "INFO", "component": "o.e.p.PluginsService", "cluster.name": "my-elastic", "node.name": "es73", "message": "loaded module [lang-expression]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:55,158Z", "level": "INFO", "component": "o.e.p.PluginsService", "cluster.name": "my-elastic", "node.name": "es73", "message": "loaded module [lang-mustache]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:55,158Z", "level": "INFO", "component": "o.e.p.PluginsService", "cluster.name": "my-elastic", "node.name": "es73", "message": "loaded module [lang-painless]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:55,158Z", "level": "INFO", "component": "o.e.p.PluginsService", "cluster.name": "my-elastic", "node.name": "es73", "message": "loaded module [mapper-extras]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:55,159Z", "level": "INFO", "component": "o.e.p.PluginsService", "cluster.name": "my-elastic", "node.name": "es73", "message": "loaded module [parent-join]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:55,163Z", "level": "INFO", "component": "o.e.p.PluginsService", "cluster.name": "my-elastic", "node.name": "es73", "message": "loaded module [percolator]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:55,163Z", "level": "INFO", "component": "o.e.p.PluginsService", "cluster.name": "my-elastic", "node.name": "es73", "message": "loaded module [rank-eval]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:55,163Z", "level": "INFO", "component": "o.e.p.PluginsService", "cluster.name": "my-elastic", "node.name": "es73", "message": "loaded module [reindex]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:55,163Z", "level": "INFO", "component": "o.e.p.PluginsService", "cluster.name": "my-elastic", "node.name": "es73", "message": "loaded module [repository-url]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:55,165Z", "level": "INFO", "component": "o.e.p.PluginsService", "cluster.name": "my-elastic", "node.name": "es73", "message": "loaded module [search-business-rules]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:55,165Z", "level": "INFO", "component": "o.e.p.PluginsService", "cluster.name": "my-elastic", "node.name": "es73", "message": "loaded module [spatial]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:55,166Z", "level": "INFO", "component": "o.e.p.PluginsService", "cluster.name": "my-elastic", "node.name": "es73", "message": "loaded module [transform]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:55,166Z", "level": "INFO", "component": "o.e.p.PluginsService", "cluster.name": "my-elastic", "node.name": "es73", "message": "loaded module [transport-netty4]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:55,166Z", "level": "INFO", "component": "o.e.p.PluginsService", "cluster.name": "my-elastic", "node.name": "es73", "message": "loaded module [vectors]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:55,166Z", "level": "INFO", "component": "o.e.p.PluginsService", "cluster.name": "my-elastic", "node.name": "es73", "message": "loaded module [x-pack-analytics]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:55,167Z", "level": "INFO", "component": "o.e.p.PluginsService", "cluster.name": "my-elastic", "node.name": "es73", "message": "loaded module [x-pack-ccr]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:55,175Z", "level": "INFO", "component": "o.e.p.PluginsService", "cluster.name": "my-elastic", "node.name": "es73", "message": "loaded module [x-pack-core]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:55,176Z", "level": "INFO", "component": "o.e.p.PluginsService", "cluster.name": "my-elastic", "node.name": "es73", "message": "loaded module [x-pack-deprecation]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:55,176Z", "level": "INFO", "component": "o.e.p.PluginsService", "cluster.name": "my-elastic", "node.name": "es73", "message": "loaded module [x-pack-enrich]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:55,176Z", "level": "INFO", "component": "o.e.p.PluginsService", "cluster.name": "my-elastic", "node.name": "es73", "message": "loaded module [x-pack-graph]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:55,176Z", "level": "INFO", "component": "o.e.p.PluginsService", "cluster.name": "my-elastic", "node.name": "es73", "message": "loaded module [x-pack-ilm]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:55,176Z", "level": "INFO", "component": "o.e.p.PluginsService", "cluster.name": "my-elastic", "node.name": "es73", "message": "loaded module [x-pack-logstash]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:55,177Z", "level": "INFO", "component": "o.e.p.PluginsService", "cluster.name": "my-elastic", "node.name": "es73", "message": "loaded module [x-pack-ml]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:55,178Z", "level": "INFO", "component": "o.e.p.PluginsService", "cluster.name": "my-elastic", "node.name": "es73", "message": "loaded module [x-pack-monitoring]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:55,178Z", "level": "INFO", "component": "o.e.p.PluginsService", "cluster.name": "my-elastic", "node.name": "es73", "message": "loaded module [x-pack-rollup]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:55,179Z", "level": "INFO", "component": "o.e.p.PluginsService", "cluster.name": "my-elastic", "node.name": "es73", "message": "loaded module [x-pack-security]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:55,179Z", "level": "INFO", "component": "o.e.p.PluginsService", "cluster.name": "my-elastic", "node.name": "es73", "message": "loaded module [x-pack-sql]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:55,179Z", "level": "INFO", "component": "o.e.p.PluginsService", "cluster.name": "my-elastic", "node.name": "es73", "message": "loaded module [x-pack-voting-only-node]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:55,179Z", "level": "INFO", "component": "o.e.p.PluginsService", "cluster.name": "my-elastic", "node.name": "es73", "message": "loaded module [x-pack-watcher]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:01:55,180Z", "level": "INFO", "component": "o.e.p.PluginsService", "cluster.name": "my-elastic", "node.name": "es73", "message": "no plugins loaded" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:02:08,368Z", "level": "INFO", "component": "o.e.x.s.a.s.FileRolesStore", "cluster.name": "my-elastic", "node.name": "es73", "message": "parsed [0] roles from file [/usr/share/elasticsearch/config/roles.yml]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:02:10,500Z", "level": "INFO", "component": "o.e.x.m.p.l.CppLogMessageHandler", "cluster.name": "my-elastic", "node.name": "es73", "message": "[controller/102] [Main.cc@110] controller (64 bit): Version 7.5.0 (Build 17d1c724ca38a1) Copyright (c) 2019 Elasticsearch BV" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:02:12,311Z", "level": "DEBUG", "component": "o.e.a.ActionModule", "cluster.name": "my-elastic", "node.name": "es73", "message": "Using REST wrapper from plugin org.elasticsearch.xpack.security.Security" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:02:12,801Z", "level": "INFO", "component": "o.e.d.DiscoveryModule", "cluster.name": "my-elastic", "node.name": "es73", "message": "using discovery type [zen] and seed hosts providers [settings]" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:02:15,639Z", "level": "INFO", "component": "o.e.n.Node", "cluster.name": "my-elastic", "node.name": "es73", "message": "initialized" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:02:15,640Z", "level": "INFO", "component": "o.e.n.Node", "cluster.name": "my-elastic", "node.name": "es73", "message": "starting ..." }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:02:16,025Z", "level": "INFO", "component": "o.e.t.TransportService", "cluster.name": "my-elastic", "node.name": "es73", "message": "publish_address {172.18.0.3:9300}, bound_addresses {0.0.0.0:9300}" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:02:16,581Z", "level": "INFO", "component": "o.e.b.BootstrapChecks", "cluster.name": "my-elastic", "node.name": "es73", "message": "bound or publishing to a non-loopback address, enforcing bootstrap checks" }
+[36mes73             |[0m ERROR: [1] bootstrap checks failed
+[36mes73             |[0m [1]: max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:02:16,657Z", "level": "INFO", "component": "o.e.n.Node", "cluster.name": "my-elastic", "node.name": "es73", "message": "stopping ..." }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:02:16,706Z", "level": "INFO", "component": "o.e.n.Node", "cluster.name": "my-elastic", "node.name": "es73", "message": "stopped" }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:02:16,707Z", "level": "INFO", "component": "o.e.n.Node", "cluster.name": "my-elastic", "node.name": "es73", "message": "closing ..." }
+[36mes73             |[0m {"type": "server", "timestamp": "2019-12-08T12:02:16,737Z", "level": "INFO", "component": "o.e.n.Node", "cluster.name": "my-elastic", "node.name": "es73", "message": "closed" }
+[36mes73 exited with code 78
+[0m[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:35Z","tags":["warning","plugins","licensing"],"pid":6,"message":"License information could not be obtained from Elasticsearch for the [data] cluster. Error: Request Timeout after 30000ms"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:36Z","tags":["warning","legacy-plugins"],"pid":6,"path":"/usr/share/kibana/src/legacy/core_plugins/visualizations","message":"Skipping non-plugin directory at /usr/share/kibana/src/legacy/core_plugins/visualizations"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:37Z","tags":["error","elasticsearch","data"],"pid":6,"message":"Request error, retrying\nGET http://elasticsearch:9200/_xpack => getaddrinfo ENOTFOUND elasticsearch elasticsearch:9200"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:37Z","tags":["info","plugins-system"],"pid":6,"message":"Starting [8] plugins: [code,licensing,security,timelion,features,spaces,translations,data]"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:37Z","tags":["warning","elasticsearch","data"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:37Z","tags":["warning","elasticsearch","data"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:37Z","tags":["warning","plugins","licensing"],"pid":6,"message":"License information could not be obtained from Elasticsearch for the [data] cluster. Error: No Living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:37Z","tags":["error","elasticsearch","admin"],"pid":6,"message":"Request error, retrying\nGET http://elasticsearch:9200/.kibana_task_manager => getaddrinfo ENOTFOUND elasticsearch elasticsearch:9200"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:37Z","tags":["error","elasticsearch","admin"],"pid":6,"message":"Request error, retrying\nGET http://elasticsearch:9200/.kibana => getaddrinfo ENOTFOUND elasticsearch elasticsearch:9200"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:37Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:37Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:37Z","tags":["warning","migrations"],"pid":6,"message":"Unable to connect to Elasticsearch. Error: No Living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:37Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:37Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:39Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:39Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:39Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:39Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:42Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:42Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:42Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:42Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:45Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:45Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:45Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:45Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:47Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:47Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:47Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:47Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:50Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:50Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:50Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:50Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:52Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:52Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:52Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:52Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:55Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:55Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:55Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:55Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:57Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:57Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:57Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:02:57Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:00Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:00Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:00Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:00Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:03Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:03Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:03Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:03Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:05Z","tags":["warning","elasticsearch","data"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:05Z","tags":["warning","elasticsearch","data"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:05Z","tags":["warning","plugins","licensing"],"pid":6,"message":"License information could not be obtained from Elasticsearch for the [data] cluster. Error: No Living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:05Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:05Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:05Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:05Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:08Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:08Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:08Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:08Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:10Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:10Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:10Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:10Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:13Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:13Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:13Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:13Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:16Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:16Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:16Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:16Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:18Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:18Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:18Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:18Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:21Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:21Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:21Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:21Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:23Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:23Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:23Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:23Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:26Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:26Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:26Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:26Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:28Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:28Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:28Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:28Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:31Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:31Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:31Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:31Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:34Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:34Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:34Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:34Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:35Z","tags":["warning","elasticsearch","data"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:35Z","tags":["warning","elasticsearch","data"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:35Z","tags":["warning","plugins","licensing"],"pid":6,"message":"License information could not be obtained from Elasticsearch for the [data] cluster. Error: No Living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:36Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:36Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:36Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:36Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:39Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:39Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:39Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:39Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:41Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:41Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:41Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:41Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:44Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:44Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:44Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:44Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:46Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:46Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:46Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:46Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:49Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:49Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:49Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:49Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:52Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:52Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:52Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:52Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:54Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:54Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:54Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:54Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:57Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:57Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:57Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:57Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:59Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:59Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:59Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:03:59Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:02Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:02Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:02Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:02Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:05Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:05Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:05Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:05Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:05Z","tags":["warning","elasticsearch","data"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:05Z","tags":["warning","elasticsearch","data"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:05Z","tags":["warning","plugins","licensing"],"pid":6,"message":"License information could not be obtained from Elasticsearch for the [data] cluster. Error: No Living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:07Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:07Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:07Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:07Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:10Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:10Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:10Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:10Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:12Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:12Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:12Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:12Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:15Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:15Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:15Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:15Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:17Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:17Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:17Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:17Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:20Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:20Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:20Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:20Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:23Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:23Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:23Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:23Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:25Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:25Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:25Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:25Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:28Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:28Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:28Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:28Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:30Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:30Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:30Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:30Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:33Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:33Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:33Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:33Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:35Z","tags":["warning","elasticsearch","data"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:35Z","tags":["warning","elasticsearch","data"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:35Z","tags":["warning","plugins","licensing"],"pid":6,"message":"License information could not be obtained from Elasticsearch for the [data] cluster. Error: No Living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:36Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:36Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:36Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:36Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:38Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:38Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:38Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:38Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:41Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:41Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:41Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"Unable to revive connection: http://elasticsearch:9200/"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:41Z","tags":["warning","elasticsearch","admin"],"pid":6,"message":"No living connections"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:43Z","tags":["info","plugins-system"],"pid":6,"message":"Stopping all plugins."}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:43Z","tags":["info","plugins","data"],"pid":6,"message":"Stopping plugin"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:43Z","tags":["info","plugins","translations"],"pid":6,"message":"Stopping plugin"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:43Z","tags":["info","plugins","spaces"],"pid":6,"message":"Stopping plugin"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:43Z","tags":["info","plugins","features"],"pid":6,"message":"Stopping plugin"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:43Z","tags":["info","plugins","timelion"],"pid":6,"message":"Stopping plugin"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:43Z","tags":["info","plugins","security"],"pid":6,"message":"Stopping plugin"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:43Z","tags":["info","plugins","licensing"],"pid":6,"message":"Stopping plugin"}
+[33mkibana73         |[0m {"type":"log","@timestamp":"2019-12-08T12:04:43Z","tags":["info","plugins","code"],"pid":6,"message":"Stopping plugin"}
+[33mkibana73 exited with code 0
+[0m

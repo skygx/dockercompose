@@ -1,0 +1,48 @@
+version: "3.9"
+services:
+  memcached:
+    image: memcached
+    container_name: memcached
+    user: root
+    restart: on-failure
+    hostname: memcached
+    ports:
+      - 11211:11211
+    volumes:
+      - /etc/localtime:/etc/localtime
+    networks:
+      - prometheus_dev
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 128M
+        reservations:
+          memory: 64M
+
+  memcached-exporter:
+    image: bitnami/memcached-exporter
+    container_name: memcached-exporter
+    restart: on-failure
+    hostname: memcached-exporter
+    user: root
+    #ports:
+    #  - 9150:9150
+    #networks:
+    #  - prometheus_dev
+    network_mode: "host"
+    volumes:
+      - /etc/localtime:/etc/localtime
+    environment:
+      - "--memcached.address=192.168.226.20:11211"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 64M
+        reservations:
+          memory: 32M
+
+networks:
+  prometheus_dev:
+    external: true

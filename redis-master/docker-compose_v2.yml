@@ -1,0 +1,43 @@
+version: '3.7'
+services:
+  master:
+    image: 192.168.136.143:5000/redis:5.0.7
+    container_name: redis-master
+    restart: always
+    command: redis-server /etc/redis.conf
+    ports:
+      - 6379:6379
+    networks:
+    - sentinel-master
+    volumes:
+      - ./data:/data
+      - ./redis1.conf:/etc/redis.conf
+ 
+  slave1:
+    image: 192.168.136.143:5000/redis:5.0.7
+    container_name: redis-slave-1
+    restart: always
+    command: redis-server /etc/redis.conf 
+    ports:
+      - 6380:6380
+    networks:
+    - sentinel-master
+    volumes:
+      - ./data:/data
+      - ./redis2.conf:/etc/redis.conf
+ 
+ 
+  slave2:
+    image: 192.168.136.143:5000/redis:5.0.7
+    container_name: redis-slave-2
+    restart: always
+    command: redis-server /etc/redis.conf
+    ports:
+      - 6381:6381
+    networks:
+    - sentinel-master
+    volumes:
+      - ./data:/data
+      - ./redis3.conf:/etc/redis.conf
+networks:
+  sentinel-master:

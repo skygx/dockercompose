@@ -1,0 +1,65 @@
+version: '3.9'
+x-logging:
+  &norm-logging
+  driver: loki
+  options:
+    loki-url: "http://192.168.226.20:3100/loki/api/v1/push"
+    max-size: "50m"
+    max-file: "10"
+    loki-pipeline-stages: |
+      - multiline:
+          firstline: '^level.*'
+
+services:
+  master:
+    image: sequenceiq/spark:1.6.0
+    #image: bitnami/spark
+    hostname: master
+    ports:
+      - "4040:4040"
+      - "50070:50070"
+      - "8042:8042"
+      - "7077:7077"
+      - "8098:8088"
+      - "8091:8080"
+#    restart: always
+    command: bash /usr/local/spark/sbin/start-master.sh && ping localhost > /dev/null
+    networks:
+      - prometheus_dev
+    environment:
+      - TZ=Asia/Shanghai
+      - LANG=zh_CN.UTF-8
+    logging: *norm-logging
+#    deploy:
+#      resources:
+#        limits:
+#          cpus: "0.25"
+#          memory: 1G
+#        reservations:
+#          memory: 512M
+
+  worker:
+    image: sequenceiq/spark:1.6.0
+    depends_on:
+      - master
+    expose:
+      - "8081"
+#    restart: always
+    command: bash /usr/local/spark/sbin/start-slave.sh spark://master:7077 && ping localhost >/dev/null
+    networks:
+      - prometheus_dev
+    environment:
+      - TZ=Asia/Shanghai
+      - LANG=zh_CN.UTF-8
+    logging: *norm-logging
+    #deploy:
+     # resources:
+     #   limits:
+     #     cpus: "0.25"
+     #     memory: 1G
+     #   reservations:
+     #     memory: 512M
+
+networks:
+  prometheus_dev:
+    external: true

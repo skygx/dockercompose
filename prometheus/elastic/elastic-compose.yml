@@ -1,0 +1,50 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  elasticearch:
+    image: elasticsearch:6.8.10
+    container_name: "elasticsearch"
+    user: root
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /opt/elasticsearch/data:/usr/share/elasticsearch/data
+      - /opt/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    networks:
+      - prometheus_dev
+    restart: "on-failure"
+    environment:
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms256m -Xmx512m
+    #deploy:
+    #  resources:
+    #    limits:
+    #      cpus: "0.25"
+    #      memory: 512M
+    #    reservations:
+    #      memory: 256M
+
+  elasticearch-exporter:
+    image: bitnami/elasticsearch-exporter
+    container_name: "elasticsearch-exporter"
+    user: root
+    ports:
+      - "9114:9114"
+    volumes:
+      - /etc/localtime:/etc/localtime
+    networks:
+      - prometheus_dev
+    restart: "on-failure"
+    command: "--es.uri=http://elasticsearch:9200 --es.all --es.indices --es.shards --es.cluster_settings"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 128M
+        reservations:
+          memory: 64M
+
+networks:
+  prometheus_dev:
+    external: true

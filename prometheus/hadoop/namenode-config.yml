@@ -1,0 +1,5 @@
+startDelaySeconds: 0
+hostPort: 192.168.226.20:1234  
+ssl: false
+lowercaseOutputName: false
+lowercaseOutputLabelNames: false

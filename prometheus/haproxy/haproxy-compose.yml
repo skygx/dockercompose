@@ -1,0 +1,98 @@
+version: "3.9"
+services:
+  web1:
+    image: jmalloc/echo-server
+    container_name: web1
+    hostname: web1
+    #user: root
+    networks:
+      - prometheus_dev
+    volumes:
+      - /etc/localtime:/etc/localtime
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 32M
+        reservations:
+          memory: 16M
+    
+  web2:
+    image: jmalloc/echo-server
+    container_name: web2
+    hostname: web2
+    #user: root
+    networks:
+      - prometheus_dev
+    volumes:
+      - /etc/localtime:/etc/localtime
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 32M
+        reservations:
+          memory: 16M
+    
+  web3:
+    image: jmalloc/echo-server
+    container_name: web3
+    hostname: web3
+    #user: root
+    networks:
+      - prometheus_dev
+    volumes:
+      - /etc/localtime:/etc/localtime
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 32M
+        reservations:
+          memory: 16M
+    
+
+  haproxy:
+    image: haproxytech/haproxy-alpine
+    container_name: haproxy
+    hostname: haproxy
+    #user: root
+    networks:
+      - prometheus_dev
+    ports:
+      - 80:80
+      - 8404:8404
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /opt/haproxy:/usr/local/etc/haproxy:ro
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 128M
+        reservations:
+          memory: 64M
+    
+  haproxyexporter:
+    image: prom/haproxy-exporter
+    container_name: haproxy-exporter
+    hostname: haproxy-exporter
+    user: root
+    networks:
+      - prometheus_dev
+    ports:
+      - 9101:9101
+    command: "--haproxy.scrape-uri='http://192.168.226.20:8404/?stats;csv'"
+    volumes:
+      - /etc/localtime:/etc/localtime
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 128M
+        reservations:
+          memory: 64M
+    
+networks:
+  prometheus_dev:
+    external: true

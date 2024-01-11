@@ -1,0 +1,56 @@
+version: '3.9'
+services:
+  rabbitmq:
+    image: rabbitmq:management-alpine
+    container_name: rabbitmq
+    restart: on-failure
+    hostname: rabbitmq
+    ports:
+      - 15672:15672
+      - 5672:5672
+      - "4369:4369"
+      - "5671:5671"
+      - "25672:25672"
+    volumes:
+      - /opt/rabbitmq/data:/var/lib/rabbitmq
+    environment:
+      - RABBITMQ_NODENAME=rabbitmq
+      #- RABBITMQ_ERLANG_COOKIE=CURIOAPPLICATION
+      - RABBITMQ_DEFAULT_USER=root
+      - RABBITMQ_DEFAULT_PASS=root
+    networks:
+      - prometheus_dev
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 256M
+        reservations:
+          memory: 128M
+
+  rabbitmq-exporter:
+    image: bitnami/rabbitmq-exporter
+    container_name: rabbitmq-exporter
+    restart: on-failure
+    hostname: rabbitmq-exporter
+    ports:
+      - 9419:9419
+      #- 9091:9090
+    environment:
+      - RABBIT_URL=http://192.168.226.20:15672
+      - PUBLISH_PORT=9419
+      - RABBIT_USER=root
+      - RABBIT_PASSWORD=root
+    networks:
+      - prometheus_dev
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 64M
+        reservations:
+          memory: 32M
+
+networks:
+  prometheus_dev:
+    external: true

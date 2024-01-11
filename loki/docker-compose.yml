@@ -1,0 +1,29 @@
+version: "3"
+
+networks:
+  loki:
+
+services:
+  loki:
+    image: 192.168.136.143:5000/loki:latest
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    networks:
+      - loki
+
+  promtail:
+    image: 192.168.136.143:5000/promtail:latest
+    volumes:
+      - /var/log:/var/log
+      - ./config.yml:/etc/promtail/config.yml
+    command: -config.file=/etc/promtail/config.yml
+    networks:
+      - loki
+
+  grafana:
+    image: 192.168.136.143:5000/grafana:master
+    ports:
+      - "3000:3000"
+    networks:
+      - loki

@@ -1,0 +1,53 @@
+version: '2'
+ 
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+      - ./docker/etc/mysql/:/etc/mysql/conf.d/
+      - ./db_data/:/var/lib/mysql/
+      - ./init-sql/:/docker-entrypoint-initdb.d/
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: F4rtC7gR<tQq
+      MYSQL_DATABASE: yearning_prod
+      MYSQL_USER: yearning
+      MYSQL_PASSWORD: yearning
+  yearning_dev:
+    image: registry.cn-hangzhou.aliyuncs.com/cookie/yearning:v1.3.2
+    depends_on: 
+      - db
+    ports:
+      - "9080:80"
+      - "9000:8000"
+    environment:
+      HOST: localhost
+      MYSQL_PASSWORD: F4rtC7gR<tQq
+      MYSQL_USER: root
+      MYSQL_ADDR: db
+      MYSQL_DATABASE: yearning_dev
+      SERVICE_PORT: 8000
+    volumes:
+       - ./docker/src/start_yearning.sh:/usr/local/bin/start_yearning.sh
+       - ./docker/src/gunicorn_dev.conf:/mnt/src/gunicorn.conf
+       - ./docker/src/app_dev.js:/var/lib/nginx/html/static/js/app.13744d427b5104064225.js
+  yearning_prod:
+    image: registry.cn-hangzhou.aliyuncs.com/cookie/yearning:v1.3.2
+    depends_on:
+      - db
+    ports:
+      - "8080:80"
+      - "8000:8000"
+    environment:
+      HOST: localhost
+      MYSQL_PASSWORD: F4rtC7gR<tQq
+      MYSQL_USER: root
+      MYSQL_ADDR: db
+      MYSQL_DATABASE: yearning_prod
+      SERVICE_PORT: 8000
+    volumes:
+       - ./docker/src/start_yearning.sh:/usr/local/bin/start_yearning.sh
+       - ./docker/src/gunicorn_prod.conf:/mnt/src/gunicorn.conf
+       - ./docker/src/app_prod.js:/var/lib/nginx/html/static/js/app.13744d427b5104064225.js

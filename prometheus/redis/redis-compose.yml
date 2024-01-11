@@ -1,0 +1,48 @@
+version: "3.9"
+services:
+  redis:
+    image: redis
+    container_name: "redis"
+    user: root
+    ports:
+      - "6379:6379"
+    networks:
+      - prometheus_dev
+    volumes:
+      - /opt/redis:/data:rw
+      - /etc/localtime:/etc/localtime
+    restart: on-failure
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 128M
+        reservations:
+          memory: 64M
+
+  redis-exporter:
+    image: bitnami/redis-exporter
+    container_name: "redis-exporter"
+    user: root
+    ports:
+      - "9121:9121"
+    networks:
+      - prometheus_dev
+    volumes:
+      - /etc/localtime:/etc/localtime
+    restart: on-failure
+    command: "-redis.addr redis://redis:6379"
+    depends_on:
+#      - prometheus
+      - redis
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 128M
+        reservations:
+          memory: 64M
+
+networks:
+  prometheus_dev:
+    external: true

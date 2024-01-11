@@ -1,0 +1,64 @@
+version: "3.9"
+x-logging:
+  &loki-logging
+  driver: loki
+  options:
+    loki-url: "http://192.168.226.20:3100/loki/api/v1/push"
+    max-size: "50m"
+    max-file: "10"
+    loki-pipeline-stages: |
+      - multiline:
+          firstline: '^{"log":.*}'
+
+services:
+  nginx:
+    image: nginx
+    container_name: "nginx"
+    user: root
+    hostname: nginx
+    ports:
+      - "81:80"
+      - "8082:8080"
+    networks:
+      - prometheus_dev
+    logging: *loki-logging
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /opt/nginx/status.conf:/etc/nginx/conf.d/status.conf
+      - /opt/nginx/nginx.conf:/etc/nginx/nginx.conf
+      #- /opt/nginx/conf.d:/etc/nginx/conf.d
+      - /data/nginx:/usr/share/nginx/html
+#    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 128M
+        reservations:
+          memory: 64M
+
+  nginx-exporter:
+    image: bitnami/nginx-exporter
+    container_name: "nginx-exporter"
+    user: root
+    ports:
+      - "9113:9113"
+    networks:
+      - prometheus_dev
+    volumes:
+      - /etc/localtime:/etc/localtime
+    #command: "-nginx.plus -nginx.scrape-uri=http://nginx:8080/api"
+    command: "-nginx.scrape-uri=http://nginx:8080/status"
+#    restart: always
+    logging: *loki-logging
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 128M
+        reservations:
+          memory: 64M
+
+networks:
+  prometheus_dev:
+    external: true

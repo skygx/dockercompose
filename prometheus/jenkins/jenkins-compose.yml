@@ -1,0 +1,67 @@
+version: "3.9"
+x-logging:
+  &loki-logging
+  driver: loki
+  options:
+    loki-url: "http://192.168.226.20:3100/loki/api/v1/push"
+    max-size: "50m"
+    max-file: "10"
+    loki-pipeline-stages: |
+      - multiline:
+          firstline: '^{"log":.*}'
+
+services:
+  jenkins:
+    image: jenkins/jenkins
+    container_name: jenkins
+    restart: on-failure
+    user: root
+    hostname: jenkins
+    ports:
+      - 8087:8080
+      - 50000:50000
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /opt/jenkins/data:/var/jenkins_home
+      #- jenkins_data:/var/jenkins_home
+    networks:
+      - prometheus_dev
+    logging: *loki-logging
+#    deploy:
+#      resources:
+#        limits:
+#          cpus: "0.25"
+#          memory: 128M
+#        reservations:
+#          memory: 64M
+
+  jenkins-exporter:
+    image: bitnami/jenkins-exporter
+    container_name: jenkins-exporter
+    restart: on-failure
+    user: root
+    hostname: jenkins-exporter
+    ports:
+      - 9118:9118
+    networks:
+      - prometheus_dev
+    logging: *loki-logging
+    #network_mode: "host"
+    volumes:
+      - /etc/localtime:/etc/localtime
+    command: "-j http://192.168.226.20:8087 -p 9118 --user admin --password admin -k"
+    depends_on:
+      - jenkins
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 64M
+        reservations:
+          memory: 32M
+
+networks:
+  prometheus_dev:
+    external: true
+volumes:
+ jenkins_data: 

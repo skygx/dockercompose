@@ -1,0 +1,65 @@
+version: "3.9"
+x-logging:
+  &norm-logging
+  driver: loki
+  options:
+    loki-url: "http://192.168.226.20:3100/loki/api/v1/push"
+    max-size: "50m"
+    max-file: "10"
+    loki-pipeline-stages: |
+      - multiline:
+          firstline: '^level.*'
+
+services:
+  jobmanager:
+    image: flink
+    container_name: jobmanager
+    hostname: jobmanager
+    expose:
+      - "6123"
+    ports:
+      - "8092:8081"
+    command: jobmanager
+    environment:
+      - JOB_MANAGER_RPC_ADDRESS=jobmanager
+      - TZ=Asia/Shanghai
+      - LANG=zh_CN.UTF-8
+    logging: *norm-logging
+    networks:
+      - prometheus_dev
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+        reservations:
+          memory: 512M 
+
+  taskmanager:
+    image: flink
+    container_name: taskmanager
+    hostname: taskmanager
+    expose:
+      - "6121"
+      - "6122"
+    depends_on:
+      - jobmanager
+    command: taskmanager
+    #links:
+    #  - "jobmanager:jobmanager"
+    environment:
+      - JOB_MANAGER_RPC_ADDRESS=jobmanager
+      - TZ=Asia/Shanghai
+      - LANG=zh_CN.UTF-8
+    logging: *norm-logging
+    networks:
+      - prometheus_dev
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+        reservations:
+          memory: 512M 
+
+networks:
+  prometheus_dev:
+    external: true

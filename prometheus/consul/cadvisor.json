@@ -1,0 +1,15 @@
+{
+      "ID": "cadvisor",
+      "Name": "prometheus-cadvisor",
+      "Tags": [
+         "primary",
+         "v1"
+      ],
+      "Address": "192.168.226.20",
+      "port": 8088,
+      "Check":
+          {
+              "HTTP": "http://192.168.226.20:8088/metrics",
+              "Interval": "15s"
+          }
+}

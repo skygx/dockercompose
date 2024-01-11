@@ -1,0 +1,78 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  kafka:
+    image: 'bitnami/kafka:latest'
+    container_name: "kafka"
+    user: root
+    ports:
+      - '9092:9092'
+    networks:
+      - prometheus_dev
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /opt/kafka/logs:/kafka
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - KAFKA_BROKER_ID=1
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://127.0.0.1:9092
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - ALLOW_PLAINTEXT_LISTENER=yes
+    #depends_on:
+    #  - prometheus
+    #  - zookeeper
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 512M
+        reservations:
+          memory: 256M
+
+  kafka-manager:
+    image: sheepkiller/kafka-manager
+    container_name: "kafka-manager"
+    user: root
+    ports:
+      - 9001:9000
+    networks:
+      - prometheus_dev
+    environment:
+      - ZK_HOSTS=zookeeper:2181
+    pid: 'host'
+    depends_on:
+    #  - zookeeper
+      - kafka
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 512M
+        reservations:
+          memory: 256M
+
+  kafka-exporter:
+    image: 'bitnami/kafka-exporter:latest'
+    container_name: "kafka-exporter"
+    user: root
+    network_mode: "host"
+    volumes:
+      - /etc/localtime:/etc/localtime
+    command: "--kafka.server=192.168.226.20:9092 --zookeeper.server=192.168.226.20:2181"
+    depends_on:
+    #  - prometheus
+      - kafka
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 128M
+        reservations:
+          memory: 64M
+
+networks:
+  prometheus_dev:
+    external: true

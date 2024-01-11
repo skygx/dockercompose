@@ -1,0 +1,48 @@
+version: "3.9"
+services:
+  mysql:
+    image: mysql
+    container_name: "mysql"
+    user: root
+    ports:
+      - "3306:3306"
+    networks:
+      - prometheus_dev
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 512M
+        reservations:
+          memory: 256M
+
+  mysqld-exporter:
+    image: prom/mysqld-exporter
+    container_name: "mysqld-exporter"
+    user: root
+    ports:
+      - "9104:9104"
+    networks:
+      - prometheus_dev
+    volumes:
+      - /root/prometheus/.my.cnf:/data/.my.cnf
+      - /etc/localtime:/etc/localtime
+    command: "--collect.global_status --collect.auto_increment.columns --collect.info_schema.processlist --collect.binlog_size --collect.info_schema.tablestats --collect.global_variables --collect.info_schema.innodb_metrics --collect.info_schema.query_response_time --collect.info_schema.userstats --collect.info_schema.tables --collect.perf_schema.file_events --collect.perf_schema.eventswaits --collect.perf_schema.indexiowaits --collect.perf_schema.tableiowaits --collect.slave_status --web.listen-address=0.0.0.0:9104"
+    restart: on-failure
+    #depends_on:
+    #  - prometheus
+    environment:
+      - DATA_SOURCE_NAME=root:root@(mysql:3306)/
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 128M
+        reservations:
+          memory: 64M
+
+networks:
+  prometheus_dev:
+    external: true

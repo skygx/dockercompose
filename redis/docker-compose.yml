@@ -1,0 +1,24 @@
+version: '3.3'
+services:
+  redis1:
+    image: redis:5.0.7
+    container_name: redis1
+    restart: always
+    ports:
+      - '6380:6379'
+    volumes:
+      - ./redis1/data:/data
+      - ./redis1/conf/redis.conf:/usr/local/etc/redis/redis.conf
+      - ./redis1/logs:/logs
+    command: redis-server /usr/local/etc/redis/redis.conf
+  redis2:
+    image: redis:5.0.7
+    container_name: redis2
+    restart: always
+    ports:
+      - '6381:6379'
+    volumes:
+      - ./redis2/data:/data
+      - ./redis2/conf/redis.conf:/usr/local/etc/redis/redis.conf
+      - ./redis2/logs:/logs
+    command: redis-server /usr/local/etc/redis/redis.conf

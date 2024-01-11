@@ -1,0 +1,226 @@
+version: "3.9"  # optional since v1.27.0
+x-logging:
+  &norm-logging
+  driver: loki
+  options:
+    loki-url: "http://192.168.226.20:3100/loki/api/v1/push"
+    max-size: "50m"
+    max-file: "10"
+    loki-pipeline-stages: |
+      - multiline:
+          firstline: '^level.*'
+
+services:
+  prometheus:
+    image: prometheus
+    container_name: "prometheus"
+    user: root
+    ports:
+      - "9090:9090"
+    volumes:
+      - /opt/prometheus/:/prometheus/
+      - /etc/localtime:/etc/localtime 
+    networks:
+      - dev
+    restart: "always"
+    environment:
+      - TZ=Asia/Shanghai
+      - LANG=zh_CN.UTF-8
+    logging: *norm-logging
+    #command: "--config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/prometheus --web.console.libraries=/usr/share/prometheus/console_libraries --web.console.templates=/usr/share/prometheus/consoles --web.enable-lifecycle"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 768M
+        reservations:
+          memory: 256M
+
+  grafana:
+    image: grafana/grafana
+    container_name: "grafana"
+    user: root
+    ports:
+      - "3000:3000"
+    volumes:
+      - /opt/grafana:/var/lib/grafana
+      - /opt/grafana/config:/etc/grafana
+      - /etc/localtime:/etc/localtime
+    networks:
+      - dev
+    restart: always
+    environment:
+      - TZ=Asia/Shanghai
+      - LANG=zh_CN.UTF-8
+    logging: *norm-logging
+    depends_on:
+      - prometheus
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 128M
+        reservations:
+          memory: 64M
+
+  renderer:
+    image: grafana/grafana-image-renderer
+    networks:
+      - dev
+    ports:
+    - 3001:8081
+    user: root
+    container_name: renderer
+    environment:
+    - GF_RENDERER_PLUGIN_TZ=Asia/Shanghai
+    - GF_RENDERER_PLUGIN_IGNORE_HTTPS_ERRORS=true
+    restart: always
+    logging: *norm-logging
+    depends_on:
+      - grafana
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 256M
+        reservations:
+          memory: 128M
+    
+  node-exporter:
+    image: prom/node-exporter
+    container_name: "node-exporter"
+    user: root
+    ports:
+      - "9100:9100"
+    volumes:
+      - "/proc:/host/proc:ro"
+      - "/sys:/host/sys:ro"
+      - "/:/rootfs:ro"
+      - /etc/localtime:/etc/localtime
+    networks:
+      - dev
+    restart: always
+    environment:
+      - TZ=Asia/Shanghai
+      - LANG=zh_CN.UTF-8
+    logging: *norm-logging
+    depends_on:
+      - prometheus
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 128M
+        reservations:
+          memory: 64M
+
+  blackbox-exporter:
+    image: prom/blackbox-exporter
+    container_name: "blackbox-exporter"
+    user: root
+    ports:
+      - "9115:9115"
+    networks:
+      - dev
+    volumes:
+      - /etc/localtime:/etc/localtime
+    restart: "always"
+    depends_on:
+      - prometheus
+    environment:
+      - TZ=Asia/Shanghai
+      - LANG=zh_CN.UTF-8
+    logging: *norm-logging
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 128M
+        reservations:
+          memory: 64M
+  
+  alertmanager:
+    image: prom/alertmanager
+    container_name: "alertmanager"
+    user: root
+    ports:
+      - "9093:9093"
+    volumes:
+      - /opt/alertmanager/:/etc/alertmanager/ 
+      - /etc/localtime:/etc/localtime
+    command: --config.file=/etc/alertmanager/config.yml
+    restart: "always"
+    depends_on:
+      - prometheus
+    networks:
+      - dev
+    environment:
+      - TZ=Asia/Shanghai
+      - LANG=zh_CN.UTF-8
+    logging: *norm-logging
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 128M
+        reservations:
+          memory: 64M
+
+  cadvisor:
+    image: google/cadvisor
+    container_name: "cadvisor"
+    user: root
+    ports:
+      - "8090:8080"
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /:/rootfs:ro 
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro 
+      - /dev/disk/:/dev/disk:ro 
+    restart: "always"
+    depends_on:
+      - prometheus
+    networks:
+      - dev
+    devices: 
+      - /dev/kmsg
+    environment:
+      - TZ=Asia/Shanghai
+      - LANG=zh_CN.UTF-8
+    logging: *norm-logging
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 128M
+        reservations:
+          memory: 64M
+
+  portainer:
+    image: portainer/portainer
+    container_name: "portainer"
+    hostname: "portainer"
+    ports:
+      - "8100:8000"
+      - "8101:9000"
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /opt/portainer:/data 
+    restart: "always"
+    networks:
+      - dev
+    logging: *norm-logging
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 128M
+        reservations:
+          memory: 64M
+
+networks:
+  dev:
+    driver: bridge

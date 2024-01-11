@@ -1,0 +1,16 @@
+kafka:
+    container_name: kafka
+    image: 192.168.136.143:5000/kafka
+    ports:
+      - "${kafka_port}:${kafka_port}"
+    environment:
+      - TZ=CST-8
+      - KAFKA_BROKER_ID=2
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_LOG_DIRS=/kafka/logs
+      - KAFKA_ADVERTISED_LISTENERS=INSIDE://${kafka_ip}:9092,OUTSIDE://192.168.136.143:9094
+      - KAFKA_LISTENERS=INSIDE://:9092,OUTSIDE://:9094
+      - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
+      - KAFKA_INTER_BROKER_LISTENER_NAME=INSIDE
+    volumes:
+      - "/data/kafka:/kafka/logs"

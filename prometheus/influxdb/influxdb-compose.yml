@@ -1,0 +1,85 @@
+version: "3.9"
+services:
+  influxdb:
+    image: influxdb
+    container_name: influxdb
+    user: root
+    restart: on-failure
+    hostname: influxdb
+    networks:
+      - prometheus_dev
+    ports:
+      - 8086:8086
+    #network_mode: "host"
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /opt/influxdb:/var/lib/influxdb
+    environment:
+      - DOCKER_INFLUXDB_INIT_USERNAME=influxdb
+      - DOCKER_INFLUXDB_INIT_PASSWORD=influxdb 
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 256M
+        reservations:
+          memory: 128M
+
+#  influxdb-exporter:
+#    image: prom/influxdb-exporter
+#    container_name: influxdb-exporter
+#    restart: on-failure
+#    hostname: influxdb-exporter
+#    user: root
+#    #ports:
+#    #  - 9122:9122
+#    #networks:
+#    #  - prometheus_dev
+#    #links:
+#    #  - influxdb
+#    network_mode: "host"
+#    volumes:
+#      - /etc/localtime:/etc/localtime
+#    command: "--udp.bind-address=192.168.226.20:8086 --timestamps"
+#    depends_on:
+#      - influxdb
+#    deploy:
+#      resources:
+#        limits:
+#          cpus: "0.25"
+#          memory: 64M
+#        reservations:
+#          memory: 32M
+
+  telegraf:
+    image: telegraf
+    container_name: telegraf
+    restart: on-failure
+    hostname: telegraf
+    user: root
+    ports:
+      - 9273:9273
+      #- 8125:8125
+      #- 8092:8092
+      #- 8094:8094
+    networks:
+      - prometheus_dev
+    links:
+      - influxdb
+    #network_mode: "host"
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /root/prometheus/influxdb/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    depends_on:
+      - influxdb
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 128M
+        reservations:
+          memory: 64M
+
+networks:
+  prometheus_dev:
+    external: true
